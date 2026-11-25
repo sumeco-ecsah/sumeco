@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Grupo de Investigación SUMECO · UNAD">
 <meta property="og:title" content="SUMECO · Sujeto, Mente y Comunidad (Categoría A)">
-<meta property="og:description" content="Explora las 5 líneas de investigación, 29 integrantes activos y 597 productos científicos del grupo SUMECO (ECSAH - UNAD) con exportación directa en APA 7 y BibTeX.">
+<meta property="og:description" content="Explora las 5 líneas de investigación, 29 integrantes activos y 597 productos científicos del grupo SUMECO (ECSAH - UNAD) con buscador y filtros por tipo, dimensión y año.">
 <meta property="og:url" content="https://sumeco-ecsah.github.io/sumeco/">
 <meta property="og:locale" content="es_CO">
 <meta name="twitter:card" content="summary">
@@ -185,25 +185,13 @@ main { padding: 32px 0 72px; min-height: 65vh; }
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
   padding: 10px 14px; background: var(--paper-alt); border-radius: 10px; margin-bottom: 12px;
 }
-.exp-toolbar-left { display: flex; align-items: center; gap: 10px; }
-.exp-toolbar-left input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--azul-d); cursor: pointer; }
 .exp-meta { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); }
 .exp-meta b { color: var(--azul-d); font-size: 13.5px; }
-.btn-clear-sel { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: none; border: none; color: var(--naranja); text-decoration: underline; cursor: pointer; display: none; }
-.btn-clear-sel.show { display: inline; }
-.export-actions { display: flex; gap: 8px; align-items: center; }
-.btn-exp {
-  font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600;
-  padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--azul-d);
-  cursor: pointer; transition: .15s;
-}
-.btn-exp:hover:not(:disabled) { border-color: var(--azul); background: var(--azul); color: #fff; }
-.btn-exp:disabled { opacity: .45; cursor: not-allowed; }
-
+.exp-nota { font-size: 12.5px; line-height: 1.55; color: var(--muted); margin: 0 0 12px; padding: 0 2px; }
+.exp-nota a { color: var(--azul); }
 .exp-list { max-height: 500px; overflow-y: auto; border-top: 1px solid var(--line); }
-.item { display: grid; grid-template-columns: 24px 1fr auto auto; gap: 12px; align-items: center; padding: 12px 8px; border-bottom: 1px solid var(--line); transition: background .12s; }
+.item { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; padding: 12px 8px; border-bottom: 1px solid var(--line); transition: background .12s; }
 .item:hover { background: var(--paper); }
-.item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--azul-d); cursor: pointer; }
 .item .t { font-size: 13.8px; line-height: 1.45; color: var(--ink); }
 .pill { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; text-transform: uppercase; }
 .p-gnc { background: #e2eef4; color: #005883; } .p-dti { background: #e1f3fa; color: #166a8c; }
@@ -272,12 +260,11 @@ footer a:hover { color: var(--naranja); }
   .header-row { flex-direction: column; align-items: flex-start; }
   .progs, .mems, .footer-grid, .exp-controls { grid-template-columns: 1fr; }
   .dimrow { grid-template-columns: 140px 1fr 40px; }
-  .item { grid-template-columns: 22px 1fr auto; gap: 8px; padding: 12px 4px; }
-  .item .pill { grid-column: 2; justify-self: start; margin-top: 2px; }
-  .item .yr { grid-column: 3; grid-row: 1; }
+  .item { grid-template-columns: 1fr auto; gap: 8px; padding: 12px 4px; }
+  .item .pill { grid-column: 1; justify-self: start; margin-top: 2px; }
+  .item .yr { grid-column: 2; grid-row: 1; }
   .network-box svg { height: 225px; }
   .exp-toolbar { flex-direction: column; align-items: stretch; }
-  .export-actions { justify-content: flex-end; }
 }
 </style>
 </head>
@@ -333,7 +320,7 @@ footer a:hover { color: var(--naranja); }
         <div class="kpi featured">
           <div>
             <div class="num">597</div>
-            <div class="lbl">Productos científicos y trabajos dirigidos (2006–2026)</div>
+            <div class="lbl">Productos científicos y trabajos dirigidos (2000–2026)</div>
           </div>
           <svg class="kpi-spark" viewBox="0 0 200 32" preserveAspectRatio="none" aria-hidden="true">
             <polyline fill="none" stroke="#F47920" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
@@ -478,7 +465,7 @@ footer a:hover { color: var(--naranja); }
       </div>
 
       <div class="panel">
-        <h3>Trayectoria anual (2006–2026)</h3>
+        <h3>Trayectoria anual (2000–2026)</h3>
         <p class="ph-sub">Pasa el cursor sobre una barra para ver el desglose o haz clic para filtrar esos productos en el explorador.</p>
         <div class="chart-wrap">
           <div class="ychart" id="ychart"></div>
@@ -506,7 +493,7 @@ footer a:hover { color: var(--naranja); }
           <span class="sec-idx">§ 03 · Catálogo abierto</span>
           <h2 class="sec-title">Explorador de producción</h2>
         </div>
-        <p class="sec-desc">Filtra, selecciona referencias y expórtalas en formato APA 7 o BibTeX.</p>
+        <p class="sec-desc">Busca y filtra la producción del grupo por palabra clave, tipo, dimensión y año.</p>
       </div>
 
       <div class="panel">
@@ -527,18 +514,9 @@ footer a:hover { color: var(--naranja); }
         <div class="active-chips" id="chips"></div>
 
         <div class="exp-toolbar">
-          <div class="exp-toolbar-left">
-            <input type="checkbox" id="sel-all-visible" title="Seleccionar o desmarcar todos los visibles" aria-label="Seleccionar todos los visibles">
-            <div class="exp-meta">
-              <b id="count">0</b> productos · <span id="sel-count">0 seleccionados</span>
-              <button type="button" class="btn-clear-sel" id="btn-clear-sel">Limpiar selección</button>
-            </div>
-          </div>
-          <div class="export-actions">
-            <button class="btn-exp" id="btn-apa" disabled>Copiar APA 7</button>
-            <button class="btn-exp" id="btn-bib" disabled>Descargar .bib</button>
-          </div>
+          <div class="exp-meta"><b id="count">0</b> productos</div>
         </div>
+        <p class="exp-nota">Este listado no incluye autores, editorial ni DOI, por lo que no sirve como referencia bibliográfica. Para citar una obra, consulta sus datos completos en el <a href="https://scienti.minciencias.gov.co/gruplac/jsp/visualiza/visualizagr.jsp?nro=00000000007065" target="_blank" rel="noopener">GrupLAC del grupo</a> o en la publicación original. Algunos títulos pueden aparecer abreviados y los años sin confirmar se muestran con una raya.</p>
 
         <div class="exp-list" id="list"></div>
       </div>
@@ -643,7 +621,7 @@ footer a:hover { color: var(--naranja); }
       </div>
     </div>
     <div class="footer-bottom">
-      Sitio estático y de acceso abierto. No usa cookies ni herramientas de analítica, y no recoge ni envía datos de quien lo visita: todo se muestra en el navegador. Datos tomados del GrupLAC de Minciencias · Categoría A, Convocatoria 957 de 2024 · SUMECO · UNAD · 2026.
+      Sitio estático y de acceso abierto. No usa cookies ni herramientas de analítica, y no recoge datos de quien lo visita. Las tipografías se cargan desde Google Fonts, por lo que el navegador envía a Google la dirección IP y datos técnicos de la conexión. Datos tomados del GrupLAC de Minciencias · Categoría A, Convocatoria 957 de 2024 · SUMECO · UNAD · 2026.
     </div>
   </div>
 </footer>
@@ -656,7 +634,8 @@ const RAW_PRODUCTS = [{"titulo": "Historias de mi vereda", "tipo": "Libro", "ani
 
 const PRODUCTS = RAW_PRODUCTS.map((p, idx) => {
   let cleanTitle = p.titulo.replace(/\s\?\s/g, ' – ').replace(/¿/g, '«').trim();
-  let cleanYear = (parseInt(p.anio, 10) > 2026) ? '2024' : p.anio;
+  // Un año posterior al actual es un error de registro: se muestra sin fecha hasta confirmarlo en GrupLAC.
+  let cleanYear = (parseInt(p.anio, 10) > new Date().getFullYear()) ? '' : p.anio;
   return { id: idx, titulo: cleanTitle, tipo: p.tipo, anio: cleanYear, macro: p.macro };
 });
 
@@ -701,7 +680,6 @@ const MACRO_LABELS = {
 };
 
 const $ = s => document.querySelector(s);
-const selectedIds = new Set();
 
 function showToast(msg) {
   const t = $('#toast');
@@ -709,8 +687,6 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2400);
 }
-
-let currentFiltered = [];
 
 function switchView(viewId, updateHash = true, push = false) {
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.v === viewId));
@@ -926,37 +902,6 @@ function renderChips() {
   });
 }
 
-function updateSelectionUI() {
-  $('#sel-count').textContent = `${selectedIds.size} seleccionados`;
-  $('#btn-apa').disabled = selectedIds.size === 0;
-  $('#btn-bib').disabled = selectedIds.size === 0;
-  $('#btn-clear-sel').classList.toggle('show', selectedIds.size > 0);
-
-  const masterCb = $('#sel-all-visible');
-  if (!currentFiltered.length) {
-    masterCb.checked = false;
-    masterCb.indeterminate = false;
-    return;
-  }
-  const visibleSelected = currentFiltered.filter(p => selectedIds.has(p.id)).length;
-  masterCb.checked = visibleSelected === currentFiltered.length;
-  masterCb.indeterminate = visibleSelected > 0 && visibleSelected < currentFiltered.length;
-}
-
-$('#sel-all-visible').addEventListener('change', e => {
-  if (e.target.checked) {
-    currentFiltered.forEach(p => selectedIds.add(p.id));
-  } else {
-    currentFiltered.forEach(p => selectedIds.delete(p.id));
-  }
-  renderExplorer(false);
-});
-
-$('#btn-clear-sel').addEventListener('click', () => {
-  selectedIds.clear();
-  renderExplorer(false);
-});
-
 function renderExplorer(shouldSync = true) {
   const term = $('#q').value.trim().toLowerCase();
   const tp = $('#ftipo').value;
@@ -970,47 +915,20 @@ function renderExplorer(shouldSync = true) {
     (!mc || p.macro === mc)
   ).sort((a, b) => (b.anio || '').localeCompare(a.anio || ''));
 
-  currentFiltered = filtered;
   $('#count').textContent = filtered.length;
   renderChips();
   if (shouldSync && document.querySelector('.tab.on')?.dataset.v === 'produccion') {
     syncURL('produccion', false);
   }
-  updateSelectionUI();
 
   $('#list').innerHTML = filtered.length ? filtered.map(p => `
     <div class="item">
-      <input type="checkbox" data-id="${p.id}" ${selectedIds.has(p.id) ? 'checked' : ''} aria-label="Seleccionar producto">
       <span class="t">${p.titulo.replace(/</g, '&lt;')}</span>
       <span class="pill p-${p.macro}">${p.tipo}</span>
       <span class="yr">${p.anio || '—'}</span>
     </div>`).join('') : '<div style="padding:24px;text-align:center;color:var(--muted)">No se encontraron productos con estos criterios.</div>';
 
-  $('#list').querySelectorAll('input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const id = Number(cb.dataset.id);
-      cb.checked ? selectedIds.add(id) : selectedIds.delete(id);
-      updateSelectionUI();
-    });
-  });
 }
-
-$('#btn-apa').addEventListener('click', () => {
-  const items = PRODUCTS.filter(p => selectedIds.has(p.id));
-  const apaText = items.map(p => `Grupo de Investigación SUMECO. (${p.anio || 's. f.'}). ${p.titulo} [${p.tipo}]. Universidad Nacional Abierta y a Distancia (UNAD).`).join('\n\n');
-  navigator.clipboard.writeText(apaText).then(() => showToast(`${items.length} cita(s) APA 7 copiadas al portapapeles`));
-});
-
-$('#btn-bib').addEventListener('click', () => {
-  const items = PRODUCTS.filter(p => selectedIds.has(p.id));
-  const bibText = items.map(p => `@misc{sumeco_${p.anio || 'sf'}_${p.id},\n  author = {{Grupo de Investigación SUMECO}},\n  title = {{${p.titulo}}},\n  year = {{${p.anio || '2026'}}},\n  howpublished = {{${p.tipo} - UNAD}}\n}`).join('\n\n');
-  const blob = new Blob([bibText], { type: 'text/plain;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `referencias_sumeco_${new Date().toISOString().slice(0,10)}.bib`;
-  a.click();
-  showToast('Archivo BibTeX descargado');
-});
 
 ['q', 'ftipo', 'fanio', 'fmacro'].forEach(id => {
   const el = document.getElementById(id);
